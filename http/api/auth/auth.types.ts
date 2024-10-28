@@ -18,4 +18,25 @@ export namespace UserAPI {
     email: string;
     password: string;
   };
+
+  export type User = {
+    fullName: string;
+    email: string;
+    token: string;
+    createdAt: string,
+    updatedAt: string,
+    role: string,
+    id: string,
+  };
+
+  export interface SignUpUserResponse {
+    user: {
+      id: string;
+      fullName: string;
+      email: string;
+      // add other user properties here
+    };
+    message: string;
+  }
+
 }

@@ -17,7 +17,7 @@
   }
   &_input,
   .select_button,
-  select{
+  select {
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     background: #ffffff;
@@ -30,15 +30,15 @@
     line-height: 21px;
     letter-spacing: 0.005em;
     padding: 10px 16px;
-    color: #4F4F4F;
+    color: #4f4f4f;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     &::placeholder {
       color: #e0e0e0;
     }
-    &:focus{
-      outline: 1px solid #99BBFF;
+    &:focus {
+      outline: 1px solid #99bbff;
     }
   }
 }
@@ -50,17 +50,16 @@
 .custom_arrow {
   position: absolute;
   top: 50%;
-  right: 40px; 
+  right: 40px;
   transform: translateY(-50%);
   width: 0;
   height: 0;
-  border-left: 6px solid transparent; 
-  border-right: 6px solid transparent; 
-  border-top: 6px solid #000; 
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #000;
 }
 
-
-.password_icon{
+.password_icon {
   position: absolute;
   margin-top: 11%;
   right: 8%;
@@ -68,7 +67,7 @@
   cursor: pointer;
 }
 
-.custom_select_container{
+.custom_select_container {
   .select-button {
     cursor: pointer;
     .active {
@@ -81,23 +80,19 @@
     top: 100%;
     left: 0;
     width: 96%;
-    background-color: #4F4F4F;
+    background-color: #4f4f4f;
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 4px 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
   }
-  
+
   .option {
     padding: 8px;
     cursor: pointer;
     input[type="checkbox"] {
       margin-right: 8px;
     }
-  } 
+  }
 }
-
-
-
-

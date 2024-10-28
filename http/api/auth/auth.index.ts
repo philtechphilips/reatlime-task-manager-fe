@@ -29,7 +29,8 @@ export function ForgotPassword (dto: UserAPI.ForgotPasswordDTO) {
 export function SignUpUser (dto: UserAPI.SignUpUserDTO) {
   return SetupHttpClient.SendRequest({
     method: 'post',
-    path: 'users/create-account',
+    path: '/v1/auth/create-account',
     body: dto
   })
 }
+

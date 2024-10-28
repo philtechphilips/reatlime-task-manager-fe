@@ -47,11 +47,11 @@ body {
 /* Style the checkbox when checked */
 #checkbox[type="checkbox"]:checked::before {
   background-color: white;
-  content: "√"; 
-  font-family: "Font Awesome 5 Free"; 
+  content: "√";
+  font-family: "Font Awesome 5 Free";
   color: black;
   font-size: 16px;
   text-align: center;
   line-height: 40px;
-  outline: 1px solid #239FAC;
-} 
+  outline: 1px solid #239fac;
+}
