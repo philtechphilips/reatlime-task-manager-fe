@@ -1,8 +1,8 @@
 import { useForm } from "@/utils/hooks/useForm";
-import { UserAPI } from "@/http/hraas-api/auth/auth.types";
+import { UserAPI } from "@/http/api/auth/auth.types";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-import { ResetPassword } from "@/http/hraas-api/auth/auth.index";
+import { ResetPassword } from "@/http/api/auth/auth.index";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
