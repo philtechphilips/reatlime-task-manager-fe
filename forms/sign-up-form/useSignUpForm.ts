@@ -26,20 +26,19 @@ export default function useSignUpForm() {
       password: string().required("Password is required"),
     }),
 
-    async onSubmit(formData)  {
+    async onSubmit(formData) {
       try {
         setIsLoading(true);
-        const { data, error } = await SignUpUser(formData);
+        const data = await SignUpUser(formData);
         if (data) {
-          setUser(data)
-          router.push('/dashboard/home')
-          toast.success(data.message || "Signup Successful!");
-        } else if (error) {
-          toast.error(error.message || "An error occurred");
-          setIsLoading(false);
+          setUser(data);
+          router.push("/dashboard/home");
+          toast.success("Signup Successful!");
         }
       } catch (error) {
-        toast.error("An unexpected error occurred");
+        toast.error((error as Error).message || "An unexpected error occurred");
+      } finally {
+        setIsLoading(false);
       }
     },
   });

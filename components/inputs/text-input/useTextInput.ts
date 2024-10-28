@@ -32,7 +32,7 @@ export default function useTextInput(props: TextInputProps) {
     if (validationError) {
       validateTextField();
     }
-  }, [props.value]);
+  }, [props.value, validateTextField, validationError]);
 
   useEffect(() => {
     if (!props.validationTrigger) {

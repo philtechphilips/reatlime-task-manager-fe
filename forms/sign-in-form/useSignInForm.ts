@@ -27,17 +27,16 @@ export default function useSignInForm() {
     async onSubmit(formData) {
       try {
         setIsLoading(true);
-        const { data, error } = await SignInExistingUser(formData);
+        const data = await SignInExistingUser(formData);
         if (data) {
-          setUser(data)
+          setUser(data);
           toast.success(data.message || "Login Successfully!");
           router.push("/dashboard/home");
-        } else if (error) {
-          toast.error(error.message || "An error occurred");
-          setIsLoading(false);
         }
       } catch (error) {
-        toast.error("An unexpected error occurred");
+        toast.error((error as Error).message || "An unexpected error occurred");
+      } finally {
+        setIsLoading(false);
       }
     },
   });
