@@ -5,10 +5,12 @@ import { UserAPI } from "@/http/api/auth/auth.types";
 import { SignInExistingUser } from "@/http/api/auth/auth.index";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import useUserStore from "@/store/userStore";
 
 export default function useSignInForm() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useUserStore();
   const form = useForm<UserAPI.SignInExistingUserDTO>({
     initialFormData: {
       email: "",
@@ -27,6 +29,7 @@ export default function useSignInForm() {
         setIsLoading(true);
         const { data, error } = await SignInExistingUser(formData);
         if (data) {
+          setUser(data)
           toast.success(data.message || "Login Successfully!");
           router.push("/dashboard/home");
         } else if (error) {

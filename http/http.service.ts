@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import Environment from "@/utils/config/environment.config";
 import axios, {
-  AxiosHeaders,
   AxiosInstance,
   AxiosResponse,
+  AxiosRequestConfig,
   CreateAxiosDefaults,
 } from "axios";
 
@@ -14,11 +12,13 @@ type HttpServiceParams<DTO, DQO> = {
   method: "post" | "get" | "delete" | "put" | "patch";
   body?: DTO;
   query?: DQO;
+  headers?: Record<string, string>;
   options?: {
     handleError?: boolean;
     throwError?: boolean;
   };
 };
+
 export type HttpServiceResolverError = {
   message: string;
   statusCode: number;
@@ -29,23 +29,23 @@ export type HttpServiceResolverData<T = null> = {
   message: string;
 };
 
-export type HttpServiceResolverDTO<T> = Promise<{
+export type HttpServiceResolverDTO<T> = {
   data: HttpServiceResolverData<T> | null;
   error: HttpServiceResolverError | null;
-}>;
+};
 
 export default class HttpService {
-   axiosInstance: AxiosInstance;
+  axiosInstance: AxiosInstance;
+
   constructor(private params: HttpServiceConstructorParams) {
     this.axiosInstance = axios.create(this.params);
   }
 
-   async resolver<T>(
+  async resolver<T>(
     fn: Promise<AxiosResponse>
-    // @ts-ignore
-  ): HttpServiceResolverDTO<T> {
+  ): Promise<HttpServiceResolverDTO<T>> {
     let data: HttpServiceResolverData<T> | null = null;
-    let error: null | HttpServiceResolverError = null;
+    let error: HttpServiceResolverError | null = null;
     try {
       const { data: apiResponse } = await fn;
       data = apiResponse;
@@ -58,21 +58,27 @@ export default class HttpService {
     return { data, error };
   }
 
-   async SendRequest<
-    DAO,
-    DTO = Record<any, any>,
-    DQO = Record<any, any>
-  >(params: HttpServiceParams<DTO, DQO>) {
+  async SendRequest<DAO, DTO = Record<any, any>, DQO = Record<any, any>>(
+    params: HttpServiceParams<DTO, DQO>
+  ): Promise<HttpServiceResolverDTO<DAO>> {
+    const config: AxiosRequestConfig = {
+      params: params.query || {},
+      headers: params.headers || {},
+    };
+
     const response = await this.resolver<DAO>(
-      this.axiosInstance[params.method](
-        params.path,
-        params.body ? params.body : ({ params: params.query || {} } as any),
-        params.body && params.query ? { params: params.query } : {}
-      )
+      this.axiosInstance.request({
+        url: params.path,
+        method: params.method,
+        data: params.body,
+        ...config,
+      })
     );
+
     if (response.error && params.options?.throwError) {
       throw response.error;
     }
+
     return response;
   }
 }

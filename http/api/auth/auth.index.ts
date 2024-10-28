@@ -4,7 +4,7 @@ import { UserAPI } from "./auth.types";
 export function SignInExistingUser (dto: UserAPI.SignInExistingUserDTO) {
   return SetupHttpClient.SendRequest({
     method: 'post',
-    path: '/users/login',
+    path: '/auth/login',
     body: dto
   })
 }
@@ -29,7 +29,7 @@ export function ForgotPassword (dto: UserAPI.ForgotPasswordDTO) {
 export function SignUpUser (dto: UserAPI.SignUpUserDTO) {
   return SetupHttpClient.SendRequest({
     method: 'post',
-    path: '/v1/auth/create-account',
+    path: '/auth/create-account',
     body: dto
   })
 }
