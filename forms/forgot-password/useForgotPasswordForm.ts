@@ -1,8 +1,8 @@
 import { object, string } from "yup";
 import { useForm } from "../../utils/hooks/useForm";
 import { toast } from "react-toastify";
-import { UserAPI } from "@/http/hraas-api/auth/auth.types";
-import { ForgotPassword } from "@/http/hraas-api/auth/auth.index";
+import { UserAPI } from "@/http/api/auth/auth.types";
+import { ForgotPassword } from "@/http/api/auth/auth.index";
 import { useState } from "react";
 
 export default function useForgotPasswordForm() {

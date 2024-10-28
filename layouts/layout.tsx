@@ -11,8 +11,8 @@ type AuthLayoutProps = {
 export default function AuthLayout({ children, pageTitle }: AuthLayoutProps) {
   return (
     <main className={styles.main}>
-      <div className={styles.right__pane}>
-        <div className="max-w-2xl mx-auto md:mr-auto md:ml-0 mt-10 bg-white">
+      <div className={""}>
+        <div className="w-full flex !px-24">
           {children}
         </div>
       </div>

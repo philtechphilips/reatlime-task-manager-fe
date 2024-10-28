@@ -5,6 +5,7 @@
   height: 100%;
   scroll-snap-type: y var(--tw-scroll-snap-strictness);
   gap: 9rem;
+width: 100%;
   .left__pane {
     scroll-snap-align: start;
     background: linear-gradient(50.5deg, #000000 9.24%, #014f57 140.18%);
@@ -40,7 +41,12 @@
 
 .signup_container,
 .signin_container {
-  margin-top: 32px;
+  margin-top: 0px !important;
+  margin-bottom: 40px;
+  padding: 40px 120px;
+  @media (max-width: 768px) { 
+    padding: 40px 20px;
+  }
   .google {
     width: 185px;
     height: 36px;
@@ -96,7 +102,7 @@
       font-weight: 700;
       font-size: 12px;
       line-height: 16px;
-      color: #239fac;
+      color: #4253f0;
       text-align: right;
       margin-bottom: 32px;
     }

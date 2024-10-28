@@ -5,12 +5,8 @@ import { IMG_GoogleSvg } from "@/assets/images/index";
 import TextInput from "@/components/inputs/text-input/TextInput";
 import LinkButton from "@/components/buttons/link-button/LinkButton";
 import BaseButton from "@/components/buttons/base-button/BaseButton";
-// import CountryList from "react-select-country-list";
 import Image from "@/node_modules/next/image";
-import SelectInput from "@/components/inputs/select-input/SelectInput";
 import useSignUpForm from "./useSignUpForm";
-import Form1 from "./Form1";
-import Form2 from "./Form2";
 import { useRouter } from "@/node_modules/next/navigation";
 
 export default function SignUpForm() {
@@ -22,73 +18,90 @@ export default function SignUpForm() {
     handleSubmit,
     validationError,
     validationSchema,
-    step,
-    nextStep,
-    prevStep,
-  } = useSignUpForm(windowRef);
+    isLoading,
+  } = useSignUpForm();
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (step === 2) {
-      handleSubmit(e)
-      // router.push('/company-profile');
-    } else if (step < 3) {
-      nextStep();
-    }
+
   };
 
 
   return (
-    <main className={styles.signup_container}>
-      <section className={styles.container_intro}>
-        <h2 className="text-[28px] font-bold text-[#1D1D1D]">
-          Getting Started
-        </h2>
-        <p className="text-base font-normal text-[#ACACAC] mt-2">
-          Create an account to continue
+    <div className={styles.signin_container}>
+    <section>
+      <h2 className="text-[28px] font-bold text-[#1D1D1D]">
+        Get started now
+      </h2>
+      <p className="text-base font-normal text-[#ACACAC] mt-2">
+        Enjoy your credentials to create an account.
+      </p>
+
+      <div className={styles.google}>
+        <Image
+          src={IMG_GoogleSvg}
+          alt="Next.js Logo"
+          width={28}
+          height={28}
+          priority
+        />
+        <p className="text-sm font-normal text-[#334155]  py-2">
+          Login with Google
         </p>
-
-        <div className={styles.google}>
-          <Image
-            src={IMG_GoogleSvg}
-            alt="google logo"
-            width={28}
-            height={28}
-            priority
-          />
-          <p className="text-sm font-normal text-[#334155]  py-2">
-            Sign up with Google
-          </p>
-        </div>
-      </section>
-
-      <div className={styles.divider}>
-        <p>OR</p>
       </div>
+    </section>
 
-      <form onSubmit={handleFormSubmit}>
-        {step === 1 && <Form1 onNextStep={nextStep} />}
-        {step === 2 && <Form2 onNextStep={nextStep} onPreviousStep={prevStep} />}
+    <div className={styles.divider}>
+      <p>OR</p>
+    </div>
 
-        <div>
-          {step > 1 && (
-            <BaseButton type="button" fit onClick={prevStep}>
-              Previous
-            </BaseButton>
-          )}
+    <form onSubmit={handleSubmit}>
+    <TextInput
+        id="name"
+        label="Name"
+        name="name"
+        labelColor
+        value={formData.email}
+        onChange={handleChange}
+        validationTrigger={validationError}
+        validation={validationSchema?.fields.email}
+      />
 
-          <BaseButton
-            type="submit"
-            fit
-          >
-            {step === 3 ? "Submit" : "Next"}
-          </BaseButton>
-        </div>
-      </form>
+      <TextInput
+        id="email"
+        label="Email Address"
+        name="email"
+        labelColor
+        value={formData.email}
+        onChange={handleChange}
+        validationTrigger={validationError}
+        validation={validationSchema?.fields.email}
+      />
+
+      <TextInput
+        id="password"
+        label="Password"
+        name="password"
+        type="password"
+        labelColor
+        value={formData.password}
+        onChange={handleChange}
+        validationTrigger={validationError}
+        validation={validationSchema?.fields.password}
+      />
+
+      <BaseButton
+        type="submit"
+        fit
+        disabled={isLoading}
+      >
+                {isLoading ? 'Loading...' : 'Create account'}
+      </BaseButton>
 
       <LinkButton href={"/auth/sign-in"}>
-        <p className={styles.new_user}>Already have an account? Sign In</p>
+        <p className={styles.new_user}>Already have an account? <span style={{ color: "#4253f0"}}>Sign In</span></p>
       </LinkButton>
-    </main>
+    </form>
+  </div>
   );
 }

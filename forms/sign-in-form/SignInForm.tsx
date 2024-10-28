@@ -25,7 +25,7 @@ export default function SignInForm() {
           Log in to continue
         </h2>
         <p className="text-base font-normal text-[#ACACAC] mt-2">
-          Enjoy the seamless payroll creation and much more with Oleefee!
+          Enjoy your credentials to access your account.
         </p>
 
         <div className={styles.google}>
@@ -83,7 +83,7 @@ export default function SignInForm() {
         </BaseButton>
 
         <LinkButton href={"/auth/sign-up"}>
-          <p className={styles.new_user}>Don’t have an account? Sign Up</p>
+          <p className={styles.new_user}>Don’t have an account? <span style={{ color: "#4253f0"}}>Sign Up</span></p>
         </LinkButton>
       </form>
     </div>

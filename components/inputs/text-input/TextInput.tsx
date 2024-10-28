@@ -54,7 +54,7 @@ export default function TextInput(props: TextInputProps) {
     <div className={styles.text_input_container}>
       <label
         className={styles.text_input_container_label}
-        style={{ color: labelColor ? "#239fac" : "000" }}
+        style={{ color: labelColor ? "#4253F0" : "000" }}
       >
         {label}
       </label>

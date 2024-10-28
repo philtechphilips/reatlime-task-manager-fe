@@ -5,18 +5,18 @@ export default function BaseButton(props: BaseButtonProps) {
   const { fit, outlined, className, disabled, ...restProps } = props;
 
   const backgroundColor = disabled
-    ? "#BDBDBD"
+    ? "#4253F0"
     : outlined
     ? "transparent"
-    : "#239FAC";
-  const textColor = outlined ? "#239FAC" : "white";
-  const hasBoxShadow = backgroundColor === "#239FAC";
+    : "#4253F0";
+  const textColor = outlined ? "#4253F0" : "white";
+  const hasBoxShadow = backgroundColor === "#4253F0";
 
 
   const buttonStyle = {
     backgroundColor: backgroundColor,
     color: textColor,
-    boxShadow: hasBoxShadow ? "-1px 3px 22px rgba(84, 196, 208, 0.46)" : "none"
+    boxShadow: hasBoxShadow ? "0px 1px 1px #4253F0" : "none"
   };
 
   return (

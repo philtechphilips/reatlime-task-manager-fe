@@ -1,8 +1,8 @@
 import { useForm } from "../../utils/hooks/useForm";
 import { object, string } from "yup";
 import { toast } from "react-toastify";
-import { UserAPI } from "@/http/hraas-api/auth/auth.types";
-import { SignInExistingUser } from "@/http/hraas-api/auth/auth.index";
+import { UserAPI } from "@/http/api/auth/auth.types";
+import { SignInExistingUser } from "@/http/api/auth/auth.index";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

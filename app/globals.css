@@ -18,6 +18,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 body {
@@ -54,23 +55,3 @@ body {
   line-height: 40px;
   outline: 1px solid #239FAC;
 } 
-
-.testimonial {
-  width: 433px;
-  height: 226px;
-  left: 0px;
-  top: 0px;
-  background: rgba(38, 51, 73, 0.21);
-  box-shadow: 0px 3px 32px rgba(11, 18, 29, 0.43);
-  border-radius: 10px;
-  padding: 32px 35px;
-}
-
-.slick-prev,
-.slick-next {
-  display: none !important;
-}
-
-.slick-dots {
-  bottom: -75px !important;
-}
