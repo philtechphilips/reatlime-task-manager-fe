@@ -1,16 +1,17 @@
 import React from "react";
 import { BaseButtonProps } from "./BaseButton.types";
+import { COLOURS } from "@/constants/colors";
 
 export default function BaseButton(props: BaseButtonProps) {
   const { fit, outlined, className, disabled, ...restProps } = props;
 
   const backgroundColor = disabled
-    ? "#4253F0"
+    ? COLOURS?.primary
     : outlined
     ? "transparent"
-    : "#4253F0";
-  const textColor = outlined ? "#4253F0" : "white";
-  const hasBoxShadow = backgroundColor === "#4253F0";
+    : COLOURS?.primary;
+  const textColor = outlined ? COLOURS?.primary : "white";
+  const hasBoxShadow = backgroundColor === COLOURS?.primary;
 
 
   const buttonStyle = {
