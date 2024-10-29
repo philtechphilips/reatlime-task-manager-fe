@@ -1,7 +1,10 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
-import styles from '../app/styles/auth.module.scss'
+import useUserStore from "@/store/userStore";
+import { useRouter } from "next/navigation";
+import styles from '../app/styles/auth.module.scss';
+
 
 type AuthLayoutProps = {
   children: ReactNode;
@@ -9,6 +12,15 @@ type AuthLayoutProps = {
 };
 
 export default function AuthLayout({ children, pageTitle }: AuthLayoutProps) {
+  const { user } = useUserStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if(user){
+      router.push("/dashboard/home");
+    }
+  }, []);
+  
   return (
     <main className={styles.main}>
       <div className={""}>
