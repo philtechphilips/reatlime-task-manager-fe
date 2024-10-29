@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
 import Sidebar from "@/components/dashboard/Sidebar";
+import Navbar from "@/components/dashboard/Navbar";
 
 type DashboardLayoutProps = {
   children: ReactNode;
@@ -12,6 +13,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
     <main className="w-full">
       <div className="relative w-full">
         <Sidebar />
+        <Navbar pageTitle={pageTitle} />
         <div className="w-full">
           {children}
         </div>
