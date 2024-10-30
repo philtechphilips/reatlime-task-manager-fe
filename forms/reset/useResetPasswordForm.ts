@@ -33,7 +33,7 @@ export default function useResetPasswordForm() {
           token: params.token,
         });
         if (data) {
-          toast.success(data.message || "Login Successfully!");
+          toast.success(data.message || "Password reset sucessful!");
           router.push("/auth/sign-in");
         } else if (error) {
           toast.error(error.message || "An error occurred");

@@ -19,7 +19,7 @@ export default function AuthLayout({ children, pageTitle }: AuthLayoutProps) {
     if(user){
       router.push("/dashboard/home");
     }
-  }, []);
+  }, [user]);
   
   return (
     <main className={styles.main}>
