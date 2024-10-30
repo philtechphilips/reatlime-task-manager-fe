@@ -34,6 +34,9 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
     &::placeholder {
       color: #e0e0e0;
     }
