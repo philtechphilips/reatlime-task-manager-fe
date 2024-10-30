@@ -18,7 +18,7 @@ export function SignInExistingUser(dto: UserAPI.SignInExistingUserDTO) {
 export function ResetPassword(dto: UserAPI.ResetPasswordDTO) {
   return SetupHttpClient.SendRequest({
     method: "post",
-    path: "/users/reset-password",
+    path: "/auth/reset-password",
     body: dto,
   });
 }
@@ -26,7 +26,7 @@ export function ResetPassword(dto: UserAPI.ResetPasswordDTO) {
 export function ForgotPassword(dto: UserAPI.ForgotPasswordDTO) {
   return SetupHttpClient.SendRequest({
     method: "post",
-    path: "/users/forgot-password",
+    path: "/auth/forgot-password",
     body: dto,
   });
 }

@@ -100,7 +100,7 @@ export default function ResetPasswordForm() {
         </div>
 
         <BaseButton type="submit" fit disabled={isLoading}>
-          {isLoading ? "Loading..." : "Login"}
+          {isLoading ? "Loading..." : "Reset"}
         </BaseButton>
       </form>
     </div>

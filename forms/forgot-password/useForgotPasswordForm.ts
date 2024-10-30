@@ -26,7 +26,7 @@ export default function useForgotPasswordForm() {
           data.message ||
             "A reset email has been sent. Please check your inbox."
         );
-        setTimeout(() => setIsLoading(false), 60000);
+       setIsLoading(false);
       }
       if (error) {
         toast.error(
