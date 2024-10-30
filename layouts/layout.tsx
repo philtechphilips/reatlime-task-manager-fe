@@ -16,9 +16,10 @@ export default function AuthLayout({ children, pageTitle }: AuthLayoutProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if(user){
+    if(user && user.isVerified){
       router.push("/dashboard/home");
     }
+    router.push("/auth/email-verification");
   }, []);
   
   return (

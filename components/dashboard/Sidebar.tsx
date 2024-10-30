@@ -5,7 +5,6 @@ import useUserStore from "@/store/userStore";
 import { usePathname, useRouter } from "next/navigation";
 import styles from "../../app/styles/dashboard.module.scss";
 import { SIDEBAR } from "@/constants/dashboard";
-import { COLOURS } from "@/constants/colors";
 
 
 const Sidebar = () => {
