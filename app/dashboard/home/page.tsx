@@ -1,10 +1,6 @@
-import ChartOne from "@/components/dashboard/home/ChartOne";
-import { BarChartData } from "@/constants/data";
 import DashboardLayout from "@/layouts/dasboard";
-import Tables from "../tables/page";
-import Table from "@/components/dashboard/home/Table";
 import Analytics from "@/components/dashboard/home/Analytics";
-import Calendar from "@/components/dashboard/home/Calendar";
+import { Kanban } from "@/components/dashboard/home/Kanban";
 
 export default function Dashboard() {
   return (
@@ -19,7 +15,7 @@ export default function Dashboard() {
 
         <section className="mt-10">
           <Analytics />
-
+<Kanban />
           {/* <div className="bg-white mt-8 rounded-xl relative py-5 w-full flex flex-col gap-5 mb-10">
            <div className="sticky top-0">
            <h1 className="text-gray-700 px-5">Table</h1>
