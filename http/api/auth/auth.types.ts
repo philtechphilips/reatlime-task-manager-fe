@@ -16,6 +16,7 @@ export namespace UserAPI {
   export type SignUpUserDTO = {
     fullName: string;
     email: string;
+    company?: string;
     password: string;
   };
 

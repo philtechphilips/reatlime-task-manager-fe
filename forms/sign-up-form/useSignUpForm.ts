@@ -15,6 +15,7 @@ export default function useSignUpForm() {
     initialFormData: {
       fullName: "",
       email: "",
+      company: "",
       password: "",
     },
 
@@ -23,6 +24,7 @@ export default function useSignUpForm() {
       email: string()
         .email("Provide a valid email address")
         .required("Email is required"),
+      company: string().optional(),
       password: string().required("Password is required"),
     }),
 
@@ -48,3 +50,4 @@ export default function useSignUpForm() {
     isLoading,
   };
 }
+

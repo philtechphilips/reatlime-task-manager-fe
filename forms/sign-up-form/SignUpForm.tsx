@@ -65,6 +65,17 @@ export default function SignUpForm() {
           validation={validationSchema?.fields.fullName}
         />
 
+<TextInput
+          id="company"
+          label="Company"
+          name="company"
+          labelColor
+          value={formData.company}
+          onChange={handleChange}
+          validationTrigger={validationError}
+          validation={validationSchema?.fields.company}
+        />
+
         <TextInput
           id="email"
           label="Email Address"
