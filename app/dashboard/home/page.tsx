@@ -13,15 +13,8 @@ export default function Dashboard() {
           Here is what’s happening on Dashboard Since it was launced
         </p>
 
-        <section className="mt-10">
+        <section className="mt-6">
           <Analytics />
-          <Kanban />
-          {/* <div className="bg-white mt-8 rounded-xl relative py-5 w-full flex flex-col gap-5 mb-10">
-           <div className="sticky top-0">
-           <h1 className="text-gray-700 px-5">Table</h1>
-           </div>
-            <Table />
-          </div> */}
         </section>
       </div>
     </DashboardLayout>
