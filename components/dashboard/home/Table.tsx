@@ -41,22 +41,21 @@ const Table = () => {
                 </thead>
                 <tbody>
                   {TableData.map((item, index) => (
-                    <tr key={index} className="border-t-2 border-[#e6e6e6] text-[#4D4D4D] w-full hover:bg-[#737373] hover:bg-opacity-10 cursor-pointer">
+                    <tr
+                      key={index}
+                      className="border-t-2 border-[#e6e6e6] text-[#4D4D4D] w-full hover:bg-[#737373] hover:bg-opacity-10 cursor-pointer"
+                    >
                       <td className="py-3 text-center font_gilroy-medium">
-                        {index +  1}
+                        {index + 1}
                       </td>
-                      <td className="py-3 font_gilroy-medium">
-                        {item.task}
-                      </td>
+                      <td className="py-3 font_gilroy-medium">{item.task}</td>
                       <td className="py-3 font_gilroy-medium">
                         {item.assignee}
                       </td>
                       <td className="py-3 font_gilroy-medium">
                         {item.dueDate}
                       </td>
-                      <td className="py-3 font_gilroy-medium">
-                        {item.notes}
-                      </td>
+                      <td className="py-3 font_gilroy-medium">{item.notes}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -24,14 +24,14 @@ export default function useForgotPasswordForm() {
       if (data) {
         toast.success(
           data.message ||
-            "A reset email has been sent. Please check your inbox."
+            "A reset email has been sent. Please check your inbox.",
         );
-       setIsLoading(false);
+        setIsLoading(false);
       }
       if (error) {
         toast.error(
           error.message ||
-            "This email does not exist in our database. Please sign up."
+            "This email does not exist in our database. Please sign up.",
         );
         setIsLoading(false);
       }

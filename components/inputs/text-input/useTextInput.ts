@@ -7,7 +7,7 @@ export default function useTextInput(props: TextInputProps) {
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     if (!props.onChange || !props.name) {
       console.error(
-        "Expected props onChange?: (payload: FormInputPayload) => void and name?: string"
+        "Expected props onChange?: (payload: FormInputPayload) => void and name?: string",
       );
       return;
     }

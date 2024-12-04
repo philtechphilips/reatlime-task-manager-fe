@@ -10,12 +10,15 @@ type DashboardLayoutProps = {
   pageTitle: String;
 };
 
-export default function DashboardLayout({ children, pageTitle }: DashboardLayoutProps) {
+export default function DashboardLayout({
+  children,
+  pageTitle,
+}: DashboardLayoutProps) {
   const { user } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
-    if(!user){
+    if (!user) {
       router.push("/auth/sign-in");
     }
   }, []);
@@ -24,9 +27,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
       <div className="relative w-full">
         <Sidebar />
         <Navbar pageTitle={pageTitle} />
-        <div className="w-full">
-          {children}
-        </div>
+        <div className="w-full">{children}</div>
       </div>
     </main>
   );

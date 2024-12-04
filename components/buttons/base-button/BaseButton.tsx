@@ -8,16 +8,15 @@ export default function BaseButton(props: BaseButtonProps) {
   const backgroundColor = disabled
     ? COLOURS?.primary
     : outlined
-    ? "transparent"
-    : COLOURS?.primary;
+      ? "transparent"
+      : COLOURS?.primary;
   const textColor = outlined ? COLOURS?.primary : "white";
   const hasBoxShadow = backgroundColor === COLOURS?.primary;
-
 
   const buttonStyle = {
     backgroundColor: backgroundColor,
     color: textColor,
-    boxShadow: hasBoxShadow ? "0px 1px 1px #4253F0" : "none"
+    boxShadow: hasBoxShadow ? "0px 1px 1px #4253F0" : "none",
   };
 
   return (

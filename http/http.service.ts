@@ -42,7 +42,7 @@ export default class HttpService {
   }
 
   async resolver<T>(
-    fn: Promise<AxiosResponse>
+    fn: Promise<AxiosResponse>,
   ): Promise<HttpServiceResolverDTO<T>> {
     let data: HttpServiceResolverData<T> | null = null;
     let error: HttpServiceResolverError | null = null;
@@ -59,7 +59,7 @@ export default class HttpService {
   }
 
   async SendRequest<DAO, DTO = Record<any, any>, DQO = Record<any, any>>(
-    params: HttpServiceParams<DTO, DQO>
+    params: HttpServiceParams<DTO, DQO>,
   ): Promise<HttpServiceResolverDTO<DAO>> {
     const config: AxiosRequestConfig = {
       params: params.query || {},
@@ -72,7 +72,7 @@ export default class HttpService {
         method: params.method,
         data: params.body,
         ...config,
-      })
+      }),
     );
 
     if (response.error && params.options?.throwError) {

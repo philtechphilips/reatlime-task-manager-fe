@@ -23,10 +23,10 @@ export namespace UserAPI {
     fullName: string;
     email: string;
     token: string;
-    createdAt: string,
-    updatedAt: string,
-    role: string,
-    id: string,
+    createdAt: string;
+    updatedAt: string;
+    role: string;
+    id: string;
     isVerified: boolean;
   };
 
@@ -39,5 +39,4 @@ export namespace UserAPI {
     };
     message: string;
   }
-
 }

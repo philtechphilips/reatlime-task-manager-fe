@@ -19,7 +19,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 interface LineChartProp {
@@ -90,10 +90,7 @@ const ChartOne: React.FC<LineChartProp> = ({ chartData }) => {
   };
 
   return (
-    <div
-      id="chart-container"
-      className="w-full max-h-[300px] mb-4"
-    >
+    <div id="chart-container" className="w-full max-h-[300px] mb-4">
       <Bar options={options} data={data} />
     </div>
   );

@@ -19,7 +19,12 @@ const SelectInput: React.FC<SelectInputProps> = ({
 
   return (
     <div className={styles.text_input_container}>
-      <label className={styles.text_input_container_label} style={{color: labelColor ? '#239fac' : '000'}}>{label}</label>
+      <label
+        className={styles.text_input_container_label}
+        style={{ color: labelColor ? "#239fac" : "000" }}
+      >
+        {label}
+      </label>
       <select
         value={selectedOption}
         onChange={handleChange}

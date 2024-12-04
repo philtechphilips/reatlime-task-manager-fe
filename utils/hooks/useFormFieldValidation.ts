@@ -8,7 +8,7 @@ export type TUseFormFieldValidationParams = {
 };
 
 export default function useFormFieldValidation(
-  params: TUseFormFieldValidationParams
+  params: TUseFormFieldValidationParams,
 ) {
   const [validationError, setValidationError] = useState<string | null>(null);
   function validateTextField() {

@@ -74,16 +74,15 @@ export default function SignInForm() {
           <p className={styles.forgot_password}>Forgot password?</p>
         </LinkButton>
 
-        <BaseButton
-          type="submit"
-          fit
-          disabled={isLoading}
-        >
-                  {isLoading ? 'Loading...' : 'Login'}
+        <BaseButton type="submit" fit disabled={isLoading}>
+          {isLoading ? "Loading..." : "Login"}
         </BaseButton>
 
         <LinkButton href={"/auth/sign-up"}>
-          <p className={styles.new_user}>Don’t have an account? <span style={{ color: "#4253f0"}}>Sign Up</span></p>
+          <p className={styles.new_user}>
+            Don’t have an account?{" "}
+            <span style={{ color: "#4253f0" }}>Sign Up</span>
+          </p>
         </LinkButton>
       </form>
     </div>
