@@ -27,21 +27,21 @@ const Board = () => {
       <Column
         title="TODO"
         column="todo"
-        headingColor="text-yellow-200"
+        headingColor="text-yellow-500"
         cards={cards}
         setCards={setCards}
       />
       <Column
         title="In progress"
         column="doing"
-        headingColor="text-blue-200"
+        headingColor="text-blue-500"
         cards={cards}
         setCards={setCards}
       />
       <Column
         title="Complete"
         column="done"
-        headingColor="text-emerald-200"
+        headingColor="text-emerald-500"
         cards={cards}
         setCards={setCards}
       />
@@ -135,7 +135,7 @@ const Column = ({ title, headingColor, cards, column, setCards }: any) => {
       {
         offset: Number.NEGATIVE_INFINITY,
         element: indicators[indicators.length - 1],
-      },
+      }
     );
 
     return el;
@@ -155,7 +155,7 @@ const Column = ({ title, headingColor, cards, column, setCards }: any) => {
   return (
     <div className="w-56 shrink-0">
       <div className="mb-3 flex items-center justify-between">
-        <h3 className={`font-medium ${headingColor}`}>{title}</h3>
+        <h3 className={`font-semibold text-sm ${headingColor}`}>{title}</h3>
         <span className="rounded text-sm text-neutral-400">
           {filteredCards.length}
         </span>
@@ -185,7 +185,21 @@ const Card = ({
   handleDragStart,
   desc,
   attachments,
+  status,
 }: any) => {
+  const statusColor =
+    status === "high"
+      ? "bg-red-600"
+      : status === "medium"
+      ? "bg-yellow-600"
+      : "bg-green-600";
+
+  const statusTextColor =
+    status === "high"
+      ? "text-red-600"
+      : status === "medium"
+      ? "text-yellow-600"
+      : "text-green-600";
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
@@ -196,26 +210,38 @@ const Card = ({
         onDragStart={(e) => handleDragStart(e, { title, id, column })}
         className="cursor-grab rounded border border-neutral-50 bg-white shadow-sm p-3 active:cursor-grabbing"
       >
+        <div className="flex items-center gap-1 mb-2">
+          <div className={`w-2 h-2 rounded-full ${statusColor}`}></div>
+          <p className={`text-xs ${statusTextColor} capitalize`}>{status}</p>
+        </div>
         <p className="text-xs text-neutral-800 font-semibold">{title}</p>
         {desc && <p className="text-xs mt-2 text-neutral-800">{desc}</p>}
         {attachments && attachments.length > 0 && (
-          <div className="flex gap-2 mt-2">
+          <div className="flex gap-1 mt-2">
             {attachments.map((item: string, index: number) => (
               <img
                 key={index}
-                src="https://www.google.com/imgres?q=website&imgurl=https%3A%2F%2Fimages.ctfassets.net%2Flzny33ho1g45%2F5VGvMMdX169JCk60IJCRDA%2F358a2d3f62c6028d978efc382cb83ad5%2Fimage10.png%3Fw%3D1400&imgrefurl=https%3A%2F%2Fzapier.com%2Fblog%2Fbest-website-builders%2F&docid=NJVo5xEf60enKM&tbnid=htyV_cWwnrdJJM&vet=12ahUKEwj7oJ3cr4yKAxV7V0EAHYhTLI0QM3oECEsQAA..i&w=864&h=451&hcb=2&itg=1&ved=2ahUKEwj7oJ3cr4yKAxV7V0EAHYhTLI0QM3oECEsQAA"
+                src="https://images.ctfassets.net/lzny33ho1g45/724KyhK94xdxCVz2wlEUQZ/6bda70bfeb3a32803db28142899e4522/best-website-builders.jpg?w=1520&fm=avif&q=31&fit=thumb&h=760"
                 alt={`Attachment ${index + 1}`}
-                className="h-10 w-10 rounded object-cover"
+                className="h-9 w-9 rounded object-cover border"
               />
             ))}
+            <div className="w-9 h-9 rounded border bg-neutral-400 flex items-center justify-center">
+              <p className="font-semibold text-white">+5</p>
+            </div>
           </div>
         )}
 
-        <div className="flex">
+        <div className="flex items-center justify-between mt-5">
           <img
-            src="https://www.google.com/imgres?q=website&imgurl=https%3A%2F%2Fimages.ctfassets.net%2Flzny33ho1g45%2F5VGvMMdX169JCk60IJCRDA%2F358a2d3f62c6028d978efc382cb83ad5%2Fimage10.png%3Fw%3D1400&imgrefurl=https%3A%2F%2Fzapier.com%2Fblog%2Fbest-website-builders%2F&docid=NJVo5xEf60enKM&tbnid=htyV_cWwnrdJJM&vet=12ahUKEwj7oJ3cr4yKAxV7V0EAHYhTLI0QM3oECEsQAA..i&w=864&h=451&hcb=2&itg=1&ved=2ahUKEwj7oJ3cr4yKAxV7V0EAHYhTLI0QM3oECEsQAA"
-            className="h-10 w-10 rounded object-cover"
+            src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            className="h-8 w-8 rounded-full object-cover"
           />
+
+          <div className="flex items-center text-neutral-500 font-semibold text-sm">
+            <i className="ri-attachment-line"></i>
+            <p>4</p>
+          </div>
         </div>
       </motion.div>
     </>
@@ -318,7 +344,7 @@ const AddCard = ({ column, setCards }: any) => {
         <motion.button
           layout
           onClick={() => setAdding(true)}
-          className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
+          className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-600 transition-colors hover:text-neutral-500"
         >
           <span>Add card</span>
           <FiPlus />
@@ -341,14 +367,31 @@ const DEFAULT_CARDS = [
     ],
     id: "1",
     column: "backlog",
+    status: "high",
   },
-  { title: "SOX compliance checklist", id: "2", column: "backlog" },
-  { title: "[SPIKE] Migrate to Azure", id: "3", column: "backlog" },
-  { title: "Document Notifications service", id: "4", column: "backlog" },
+  {
+    title: "SOX compliance checklist",
+    status: "medium",
+    id: "2",
+    column: "backlog",
+  },
+  {
+    title: "[SPIKE] Migrate to Azure",
+    status: "low",
+    id: "3",
+    column: "backlog",
+  },
+  {
+    title: "Document Notifications service",
+    status: "high",
+    id: "4",
+    column: "backlog",
+  },
   // TODO
   {
     title: "Research DB options for new microservice",
     id: "5",
+    status: "low",
     column: "todo",
   },
   { title: "Postmortem for outage", id: "6", column: "todo" },
@@ -368,3 +411,4 @@ const DEFAULT_CARDS = [
     column: "done",
   },
 ];
+
