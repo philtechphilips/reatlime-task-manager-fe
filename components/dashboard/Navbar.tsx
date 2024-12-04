@@ -7,11 +7,13 @@ const Navbar = ({ pageTitle }: any) => {
   const { open, toggleOpen } = navStore();
   const { user } = useUserStore();
   return (
-    <nav className="w-full flex items-center justify-between md:items-end md:justify-end md:px-24 px-5 py-4 bg-neutral-100">
+    <nav className="w-full flex items-center md:pl-[260px] justify-between  md:px-10 border-b px-5 py-3 bg-neutral-100">
       <i
         className="ri-menu-2-line text-2xl md:hidden flex"
         onClick={toggleOpen}
       ></i>
+
+      <p className="font-semibold">{pageTitle}</p>
       <div className=" flex items-center gap-4">
         <div
           className={`bg-[${COLOURS.primary}] cursor-pointer font-medium flex items-center gap-[2px] text-sm px-5 py-2 rounded-lg text-neutral-100`}

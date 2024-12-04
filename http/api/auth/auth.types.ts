@@ -29,6 +29,7 @@ export namespace UserAPI {
     role: string;
     id: string;
     isVerified: boolean;
+    organizations: any;
   };
 
   export interface SignUpUserResponse {
