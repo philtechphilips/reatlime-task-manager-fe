@@ -1,11 +1,11 @@
-'use client'
-import React, { ChangeEvent, useState } from 'react';
+"use client";
+import React, { ChangeEvent, useState } from "react";
 import styles from "../../../app/styles/auth.module.scss";
 
 const DynamicSelect = () => {
-  const [selectedOption, setSelectedOption] = useState('English (UK)');
+  const [selectedOption, setSelectedOption] = useState("English (UK)");
 
-  const handleChange = (e:ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(e.target.value);
   };
 
@@ -15,7 +15,8 @@ const DynamicSelect = () => {
         id="language"
         value={selectedOption}
         onChange={handleChange}
-        className="pl-2 pr-8 appearance-none w-[153px] h-11 bg-[#F8FAFC] text-[#ACACAC] text-center text-xs rounded-lg outline-none">
+        className="pl-2 pr-8 appearance-none w-[153px] h-11 bg-[#F8FAFC] text-[#ACACAC] text-center text-xs rounded-lg outline-none"
+      >
         <option value="English (UK)">English (UK)</option>
       </select>
       <div className="absolute inset-y-0 right-[145px] top-[44px] flex items-center pr-2 pointer-events-none">
@@ -38,5 +39,3 @@ const DynamicSelect = () => {
 };
 
 export default DynamicSelect;
-
-

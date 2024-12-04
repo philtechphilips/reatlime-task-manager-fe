@@ -3,10 +3,9 @@ import "./globals.css";
 import Provider from "@/providers/Provider";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 config.autoAddCss = false;
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +22,7 @@ export default function RootLayout({
       <body>
         <Provider>
           {children}
-          <ToastContainer/>
+          <ToastContainer />
         </Provider>
       </body>
     </html>

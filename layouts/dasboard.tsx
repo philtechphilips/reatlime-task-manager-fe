@@ -10,23 +10,35 @@ type DashboardLayoutProps = {
   pageTitle: String;
 };
 
-export default function DashboardLayout({ children, pageTitle }: DashboardLayoutProps) {
-  const { user } = useUserStore();
+export default function DashboardLayout({
+  children,
+  pageTitle,
+}: DashboardLayoutProps) {
+  const { user } = useUserStore(); // Access the user state
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if(!user){
-      router.push("/auth/sign-in");
-    }
+    setIsMounted(true); // Mark the component as mounted
   }, []);
+
+  useEffect(() => {
+    if (isMounted && !user) {
+      router.push("/auth/sign-in"); // Redirect only if user is not logged in after mounting
+    }
+  }, [isMounted, user]);
+
+  if (!isMounted || !user) {
+    // Show a loading state until the component is mounted and user is confirmed
+    return <div>Loading...</div>;
+  }
+
   return (
     <main className="w-full">
       <div className="relative w-full">
         <Sidebar />
         <Navbar pageTitle={pageTitle} />
-        <div className="w-full">
-          {children}
-        </div>
+        <div className="w-full">{children}</div>
       </div>
     </main>
   );

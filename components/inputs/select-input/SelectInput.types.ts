@@ -7,7 +7,7 @@ interface Option {
 
 export interface SelectInputProps {
   label: string;
-  labelColor?: boolean
+  labelColor?: boolean;
   options: Option[];
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void; 
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }

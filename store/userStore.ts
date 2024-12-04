@@ -1,7 +1,7 @@
 // src/store/userStore.ts
-import { UserAPI } from '@/http/api/auth/auth.types';
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { UserAPI } from "@/http/api/auth/auth.types";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface UserState {
   user: UserAPI.User | null;
@@ -22,9 +22,9 @@ const useUserStore = create<UserState>()(
       clearUser: () => set({ user: null }),
     }),
     {
-      name: 'user',
-    }
-  )
+      name: "user",
+    },
+  ),
 );
 
 export default useUserStore;

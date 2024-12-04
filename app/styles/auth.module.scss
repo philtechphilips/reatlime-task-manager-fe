@@ -5,7 +5,7 @@
   height: 100%;
   scroll-snap-type: y var(--tw-scroll-snap-strictness);
   gap: 9rem;
-width: 100%;
+  width: 100%;
   .left__pane {
     scroll-snap-align: start;
     background: linear-gradient(50.5deg, #000000 9.24%, #014f57 140.18%);
@@ -44,7 +44,7 @@ width: 100%;
   margin-top: 0px !important;
   margin-bottom: 40px;
   padding: 40px 120px;
-  @media (max-width: 768px) { 
+  @media (max-width: 768px) {
     padding: 40px 20px;
   }
   .google {

@@ -7,9 +7,9 @@ import { useState } from "react";
 export default function Provider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
   return (
-      <QueryClientProvider client={queryClient}>
-          {children}
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      {children}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+    </QueryClientProvider>
   );
 }

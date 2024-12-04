@@ -16,6 +16,7 @@ export namespace UserAPI {
   export type SignUpUserDTO = {
     fullName: string;
     email: string;
+    company?: string;
     password: string;
   };
 
@@ -23,11 +24,12 @@ export namespace UserAPI {
     fullName: string;
     email: string;
     token: string;
-    createdAt: string,
-    updatedAt: string,
-    role: string,
-    id: string,
+    createdAt: string;
+    updatedAt: string;
+    role: string;
+    id: string;
     isVerified: boolean;
+    organizations: any;
   };
 
   export interface SignUpUserResponse {
@@ -39,5 +41,4 @@ export namespace UserAPI {
     };
     message: string;
   }
-
 }
