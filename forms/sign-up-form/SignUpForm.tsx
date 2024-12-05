@@ -65,7 +65,7 @@ export default function SignUpForm() {
           validation={validationSchema?.fields.fullName}
         />
 
-<TextInput
+        <TextInput
           id="company"
           label="Company"
           name="company"

@@ -24,7 +24,9 @@ const Navbar = ({ pageTitle }: any) => {
 
         <div className="flex items-center gap-3">
           <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
-            <h1 className="text-xs font-semibold">{user?.fullName.charAt(0)}</h1>
+            <h1 className="text-xs font-semibold">
+              {user?.fullName.charAt(0)}
+            </h1>
           </div>
           <h6 className="font-semibold text-xs">{user?.fullName}</h6>
         </div>
@@ -34,4 +36,3 @@ const Navbar = ({ pageTitle }: any) => {
 };
 
 export default Navbar;
-
