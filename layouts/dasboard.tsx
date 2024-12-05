@@ -7,6 +7,8 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import Organization from "@/components/modals/Organization";
 import useUserStore from "@/store/userStore";
 import React, { ReactNode, ReactElement, useEffect, useState } from "react";
+import { SetupHttpClient } from "@/http/api";
+import { ToastContainer } from "react-toastify";
 
 type DashboardLayoutProps = {
   children: ReactNode;
@@ -32,15 +34,18 @@ export default function DashboardLayout({
   }, [isMounted, user, router]);
 
   const getUserOrg = async (userId: string) => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_BASE_URL}/members/user/${userId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${user?.token}`,
-        },
+    return SetupHttpClient.SendRequest({
+      method: "get",
+      path: `/members/user/${userId}`,
+      headers: {
+        Authorization: `Bearer ${user?.token}`,
       },
-    );
-    return response.data;
+    }).then((response: any) => {
+      if (response) {
+        return response.data;
+      }
+      throw new Error(response?.error?.message);
+    });
   };
 
   const { isLoading, isError, data } = useQuery({
@@ -70,6 +75,7 @@ export default function DashboardLayout({
           <Organization />
         </div>
       )}
+      <ToastContainer />
     </main>
   );
 }
