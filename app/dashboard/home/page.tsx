@@ -35,4 +35,3 @@ const DashboardContent = ({ user, organizationData }: any) => {
     </div>
   );
 };
-

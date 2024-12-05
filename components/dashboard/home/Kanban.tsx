@@ -135,7 +135,7 @@ const Column = ({ title, headingColor, cards, column, setCards }: any) => {
       {
         offset: Number.NEGATIVE_INFINITY,
         element: indicators[indicators.length - 1],
-      }
+      },
     );
 
     return el;
@@ -191,15 +191,15 @@ const Card = ({
     status === "high"
       ? "bg-red-600"
       : status === "medium"
-      ? "bg-yellow-600"
-      : "bg-green-600";
+        ? "bg-yellow-600"
+        : "bg-green-600";
 
   const statusTextColor =
     status === "high"
       ? "text-red-600"
       : status === "medium"
-      ? "text-yellow-600"
-      : "text-green-600";
+        ? "text-yellow-600"
+        : "text-green-600";
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
@@ -411,4 +411,3 @@ const DEFAULT_CARDS = [
     column: "done",
   },
 ];
-

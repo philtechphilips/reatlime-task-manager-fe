@@ -38,7 +38,7 @@ export default function DashboardLayout({
         headers: {
           Authorization: `Bearer ${user?.token}`,
         },
-      }
+      },
     );
     return response.data;
   };
@@ -73,4 +73,3 @@ export default function DashboardLayout({
     </main>
   );
 }
-
