@@ -1,84 +1,105 @@
-import axios, {
-  AxiosInstance,
-  AxiosResponse,
-  AxiosRequestConfig,
-  CreateAxiosDefaults,
-} from "axios";
+import authHeader from "@/utils/constant";
+import axios from "axios";
+import { v4 as uuid } from "uuid";
+import { io } from "socket.io-client";
+import { unAuthRoutes } from "@/utils/constant";
+import { ToastStatus } from "@/types/User";
+import { customToast } from "./misc";
+import { errorMessage } from "./error-message";
 
-type HttpServiceConstructorParams = CreateAxiosDefaults<any>;
-
-type HttpServiceParams<DTO, DQO> = {
-  path: string;
-  method: "post" | "get" | "delete" | "put" | "patch";
-  body?: DTO;
-  query?: DQO;
-  headers?: Record<string, string>;
-  options?: {
-    handleError?: boolean;
-    throwError?: boolean;
-  };
-};
-
-export type HttpServiceResolverError = {
-  message: string;
-  statusCode: number;
-};
-
-export type HttpServiceResolverData<T = null> = {
-  data: T;
-  message: string;
-};
-
-export type HttpServiceResolverDTO<T> = {
-  data: HttpServiceResolverData<T> | null;
-  error: HttpServiceResolverError | null;
-};
-
-export default class HttpService {
-  axiosInstance: AxiosInstance;
-
-  constructor(private params: HttpServiceConstructorParams) {
-    this.axiosInstance = axios.create(this.params);
-  }
-
-  async resolver<T>(
-    fn: Promise<AxiosResponse>,
-  ): Promise<HttpServiceResolverDTO<T>> {
-    let data: HttpServiceResolverData<T> | null = null;
-    let error: HttpServiceResolverError | null = null;
-    try {
-      const { data: apiResponse } = await fn;
-      data = apiResponse;
-    } catch (_error: any) {
-      error = _error.response?.data || {
-        message: _error.message,
-        statusCode: 400,
-      };
-    }
-    return { data, error };
-  }
-
-  async SendRequest<DAO, DTO = Record<any, any>, DQO = Record<any, any>>(
-    params: HttpServiceParams<DTO, DQO>,
-  ): Promise<HttpServiceResolverDTO<DAO>> {
-    const config: AxiosRequestConfig = {
-      params: params.query || {},
-      headers: params.headers || {},
-    };
-
-    const response = await this.resolver<DAO>(
-      this.axiosInstance.request({
-        url: params.path,
-        method: params.method,
-        data: params.body,
-        ...config,
-      }),
-    );
-
-    if (response.error && params.options?.throwError) {
-      throw response.error;
-    }
-
-    return response;
-  }
+interface HeaderType {
+  accept?: string;
+  "Content-Type"?: string;
+  Authorization?: string;
 }
+export const API_URL = process.env.NEXT_PUBLIC_APP_BASE_URL;
+
+const HEADERS = {
+  ...authHeader(),
+  accept: "application/json",
+  "Content-Type": "application/json",
+};
+
+interface RequestProps {
+  url: string;
+  method?: string;
+  headers?: HeaderType;
+  body?: any;
+  signal?: AbortSignal;
+}
+const makeNetworkCall = async ({
+  url,
+  method = "get",
+  headers,
+  body,
+  signal,
+}: RequestProps) => {
+  if (!url) {
+    throw "Url is Invalid";
+  }
+  if (!method) {
+    throw "Method is Invalid";
+  }
+
+  const args = {
+    method: method.toLowerCase(),
+  };
+
+  const axiosInstance = axios.create({
+    baseURL: API_URL,
+    signal,
+    headers: { ...HEADERS, ...headers },
+    //@ts-ignore
+    requestId: uuid(),
+  });
+
+  axiosInstance.interceptors.request.use((config) => {
+    //@ts-ignore
+    const requestId = config.requestId;
+    const { url, method, data } = config;
+    const payload = { url, method, body: data };
+    let signal = config.signal;
+    const isUnAuthRoute = unAuthRoutes.includes(window.location.pathname);
+    return {
+      ...config,
+      signal,
+    };
+  });
+
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      //@ts-ignore
+      const requestId = response.config.requestId;
+      const activityId = localStorage.getItem("activityId") || "";
+      const { url, method, data } = response.config;
+      const payload = { url, method, body: data, statusCode: response.status };
+      return response;
+    },
+    (err) => {
+      const message = errorMessage(err);
+      if (err.response?.status === 401) {
+        console.log("401 error");
+      }
+      const token = localStorage.getItem("token");
+      if (token && message !== "canceled") {
+        customToast(ToastStatus.error, message);
+      }
+      throw new Error(message);
+    },
+  );
+
+  //@ts-ignore
+  let requestBody = await axiosInstance[args.method](url, body)
+    //@ts-ignore
+    .then((response) => {
+      return response;
+    })
+    //@ts-ignore
+    .catch((err) => {
+      throw err;
+    });
+
+  return requestBody;
+};
+
+export default makeNetworkCall;

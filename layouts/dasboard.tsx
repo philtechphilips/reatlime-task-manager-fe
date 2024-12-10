@@ -7,8 +7,8 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import Organization from "@/components/modals/Organization";
 import useUserStore from "@/store/userStore";
 import React, { ReactNode, ReactElement, useEffect, useState } from "react";
-import { SetupHttpClient } from "@/http/api";
 import { ToastContainer } from "react-toastify";
+import makeNetworkCall from "@/http/http.service";
 
 type DashboardLayoutProps = {
   children: ReactNode;
@@ -34,9 +34,9 @@ export default function DashboardLayout({
   }, [isMounted, user, router]);
 
   const getUserOrg = async (userId: string) => {
-    return SetupHttpClient.SendRequest({
+    return makeNetworkCall({
       method: "get",
-      path: `/members/user/${userId}`,
+      url: `/members/user/${userId}`,
       headers: {
         Authorization: `Bearer ${user?.token}`,
       },
@@ -52,7 +52,7 @@ export default function DashboardLayout({
     queryKey: ["userOrg", user?.id],
     queryFn: () => getUserOrg(user!.id),
     enabled: !!user?.id,
-    retry: true,
+    retry: 3,
   });
 
   if (!isMounted) {

@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
-import { SetupHttpClient } from "..";
 import { UserAPI } from "./auth.types";
+import makeNetworkCall from "@/http/http.service";
 
 export function SignInExistingUser(dto: UserAPI.SignInExistingUserDTO) {
-  return SetupHttpClient.SendRequest({
+  return makeNetworkCall({
     method: "post",
-    path: "/auth/login",
+    url: "/auth/login",
     body: dto,
   }).then((response) => {
     if (response && isUser(response.data)) {
@@ -16,17 +16,17 @@ export function SignInExistingUser(dto: UserAPI.SignInExistingUserDTO) {
 }
 
 export function ResetPassword(dto: UserAPI.ResetPasswordDTO) {
-  return SetupHttpClient.SendRequest({
+  return makeNetworkCall({
     method: "post",
-    path: "/auth/reset-password",
+    url: "/auth/reset-password",
     body: dto,
   });
 }
 
 export function ForgotPassword(dto: UserAPI.ForgotPasswordDTO) {
-  return SetupHttpClient.SendRequest({
+  return makeNetworkCall({
     method: "post",
-    path: "/auth/forgot-password",
+    url: "/auth/forgot-password",
     body: dto,
   });
 }
@@ -38,9 +38,9 @@ function isUser(data: any): data is UserAPI.User {
 }
 
 export function SignUpUser(dto: UserAPI.SignUpUserDTO): Promise<UserAPI.User> {
-  return SetupHttpClient.SendRequest<UserAPI.User>({
+  return makeNetworkCall({
     method: "post",
-    path: "/auth/create-account",
+    url: "/auth/create-account",
     body: dto,
   }).then((response) => {
     if (response && isUser(response.data)) {

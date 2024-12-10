@@ -1,10 +1,10 @@
-import { SetupHttpClient } from "..";
+import makeNetworkCall from "@/http/http.service";
 import { TasksAPI } from "./task.types";
 
 export function CreateMember(dto: TasksAPI.AddNewMemberDTO, token: string) {
-  return SetupHttpClient.SendRequest({
+  return makeNetworkCall({
     method: "post",
-    path: "/members",
+    url: "/members",
     body: dto,
     headers: {
       Authorization: `Bearer ${token}`,
